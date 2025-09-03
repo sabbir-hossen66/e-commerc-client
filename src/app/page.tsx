@@ -2,8 +2,7 @@ import { LandingPage } from "./components/landing";
 
 export default function Home() {
   return (
-  <div>
-    <h2>hellO mama</h2>
+  <div className="m-0 p-0">
     <LandingPage/>
   </div>
   )
