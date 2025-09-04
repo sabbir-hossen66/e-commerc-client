@@ -46,7 +46,7 @@ npm (comes with Node.js)
 Installation
 
 Clone the repository
-bashgit clone https://github.com/sabbir-hossen66/nijer-bazar-client.git
+bashgit clone https://github.com/sabbir-hossen66/e-commerc-client.git
 cd nijer-bazar-client
 
 Install dependencies
