@@ -1,6 +1,8 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { mockProducts } from "../data";
+import Link from "next/link";
+
 
 // Mock data - replace with API later
 
@@ -134,16 +136,18 @@ const Product = () => {
         </div>
 
         {/* Action Button */}
+         <Link href={`/products/${product.id}`}>
         <button 
           disabled={!product.inStock}
-          className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
+          className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 cursor-pointer ${
             product.inStock 
               ? 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-md hover:shadow-lg' 
               : 'bg-gray-200 text-gray-500 cursor-not-allowed'
           }`}
         >
-          {product.inStock ? '🛒 Add to Cart' : '❌ Out of Stock'}
+          {product.inStock ? 'View Detail' : '❌ Out of Stock'}
         </button>
+        </Link>
       </div>
     </div>
   );
