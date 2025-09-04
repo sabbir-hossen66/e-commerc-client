@@ -8,11 +8,9 @@ import ReviewsSection from "./homePage/review"
 export const LandingPage=()=>{
   return(
     <div>
-     <Navbar/>
      <Banner/>
      <Product/>
      <ReviewsSection/>
-     <Footer/>
     </div>
   )
 }
