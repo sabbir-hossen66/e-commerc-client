@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { mockProducts } from "../data";
 import Link from "next/link";
 
@@ -32,38 +32,46 @@ const Product = () => {
     | "featured"
     | "newest";
 
-  const sortProducts = (products: typeof mockProducts, sortType: SortType) => {
-    const sortFunctions: Record<SortType, (a: typeof mockProducts[number], b: typeof mockProducts[number]) => number> = {
+const sortProducts = useCallback(
+  (products: typeof mockProducts, sortType: SortType) => {
+    const sortFunctions: Record<
+      SortType,
+      (a: typeof mockProducts[number], b: typeof mockProducts[number]) => number
+    > = {
       "price-low": (a, b) => a.price - b.price,
       "price-high": (a, b) => b.price - a.price,
-      "rating": (a, b) => b.rating - a.rating,
-      "discount": (a, b) => b.discount - a.discount,
-      "name": (a, b) => a.name.localeCompare(b.name),
-      "popularity": (a, b) => b.reviews - a.reviews,
-      "featured": (a, b) => Number(b.featured) - Number(a.featured) || a.id - b.id, // Featured first, then by ID
-      "newest": (a, b) => b.id - a.id, // Assuming higher ID = newer
+      rating: (a, b) => b.rating - a.rating,
+      discount: (a, b) => b.discount - a.discount,
+      name: (a, b) => a.name.localeCompare(b.name),
+      popularity: (a, b) => b.reviews - a.reviews,
+      featured: (a, b) =>
+        Number(b.featured) - Number(a.featured) || a.id - b.id,
+      newest: (a, b) => b.id - a.id,
     };
 
     return [...products].sort(sortFunctions[sortType] ?? sortFunctions.featured);
-  };
+  },
+  [] // ✅ function is stable, won't change
+);
 
-  // Filter and sort products using modern approach
-  const filteredProducts = useMemo(() => {
-    const filtered = mockProducts.filter(product => {
-      const searchTerm = searchQuery.toLowerCase();
-      const matchesSearch = [
-        product.name,
-        product.category,
-        ...product.tags
-      ].some(field => field.toLowerCase().includes(searchTerm));
-      
-      const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
-      
-      return matchesSearch && matchesCategory;
-    });
+const filteredProducts = useMemo(() => {
+  const filtered = mockProducts.filter((product) => {
+    const searchTerm = searchQuery.toLowerCase();
+    const matchesSearch = [
+      product.name,
+      product.category,
+      ...product.tags,
+    ].some((field) => field.toLowerCase().includes(searchTerm));
 
-    return sortProducts(filtered, sortBy);
-  }, [searchQuery, selectedCategory, sortBy]);
+    const matchesCategory =
+      selectedCategory === "all" || product.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  return sortProducts(filtered, sortBy);
+}, [searchQuery, selectedCategory, sortBy, sortProducts]); // ✅ now valid
+
 
   type Product = typeof mockProducts[number];
 
