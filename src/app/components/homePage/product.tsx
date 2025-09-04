@@ -136,13 +136,13 @@ const Product = () => {
         {/* Action Button */}
         <button 
           disabled={!product.inStock}
-          className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+          className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
             product.inStock 
               ? 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-md hover:shadow-lg' 
               : 'bg-gray-200 text-gray-500 cursor-not-allowed'
           }`}
         >
-          {product.inStock ? 'View Detail' : '❌ Out of Stock'}
+          {product.inStock ? '🛒 Add to Cart' : '❌ Out of Stock'}
         </button>
       </div>
     </div>
@@ -185,7 +185,7 @@ const Product = () => {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-4 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+                className={`px-4 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 ${
                   selectedCategory === category.id
                     ? 'bg-yellow-500 text-white shadow-lg scale-105'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent hover:border-yellow-300'
@@ -256,8 +256,8 @@ const Product = () => {
         {/* Load More Button */}
         {filteredProducts.length > 0 && (
           <div className="text-center mt-12">
-            <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
-             Load More Products
+            <button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              📦 Load More Products
             </button>
           </div>
         )}
