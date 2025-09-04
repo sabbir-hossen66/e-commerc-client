@@ -122,3 +122,74 @@
       featured: true
     }
   ];
+
+
+  export const mockReviews = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      rating: 5,
+      comment: "Absolutely love the quality! The t-shirt is so comfortable and the fabric feels premium. Will definitely order more!",
+      product: "Premium White T-Shirt",
+      date: "2024-08-15",
+      avatar: "👩",
+      verified: true,
+      location: "New York, USA"
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      rating: 4,
+      comment: "Great jacket! Perfect fit and excellent craftsmanship. The leather quality exceeded my expectations. Highly recommended!",
+      product: "Leather Jacket",
+      date: "2024-08-10",
+      avatar: "👨",
+      verified: true,
+      location: "California, USA"
+    },
+    {
+      id: 3,
+      name: "Emily Davis",
+      rating: 5,
+      comment: "Beautiful dress and fast shipping! Exactly what I was looking for. The material is gorgeous and fits perfectly.",
+      product: "Summer Dress",
+      date: "2024-08-08",
+      avatar: "👩‍🦰",
+      verified: true,
+      location: "London, UK"
+    },
+    {
+      id: 4,
+      name: "James Wilson",
+      rating: 5,
+      comment: "Outstanding service and product quality. The jeans are exactly as described and the delivery was super quick!",
+      product: "Casual Jeans",
+      date: "2024-08-05",
+      avatar: "👱‍♂️",
+      verified: true,
+      location: "Toronto, Canada"
+    },
+    {
+      id: 5,
+      name: "Priya Sharma",
+      rating: 4,
+      comment: "Very happy with my purchase! The handbag is stylish and well-made. Customer service was also very helpful.",
+      product: "Designer Handbag",
+      date: "2024-08-02",
+      avatar: "👩‍🦱",
+      verified: true,
+      location: "Mumbai, India"
+    },
+    {
+      id: 6,
+      name: "David Rodriguez",
+      rating: 5,
+      comment: "Exceeded expectations! The watch is beautiful and the packaging was premium. Great attention to detail!",
+      product: "Classic Watch",
+      date: "2024-07-28",
+      avatar: "🧔",
+      verified: true,
+      location: "Madrid, Spain"
+    }
+  ];
+  
