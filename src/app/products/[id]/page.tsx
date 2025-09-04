@@ -125,7 +125,7 @@ const ProductDetail = () => {
                   )}
                   {product.inStock ? (
                     <div className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
-                      ✅ In Stock
+                       In Stock
                     </div>
                   ) : (
                     <div className="bg-gray-500 text-white px-4 py-2 rounded-full text-sm font-bold">
@@ -224,9 +224,9 @@ const ProductDetail = () => {
                   {/* Add to Cart Button */}
                   <button
                     onClick={handleAddToCart}
-                    className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                    className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white py-4 px-8 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer"
                   >
-                    🛒 Add to Cart - ${(product.price * quantity).toFixed(2)}
+                    🛒 Add to Cart
                   </button>
 
                   {/* Additional Actions */}
