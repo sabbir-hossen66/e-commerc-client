@@ -120,6 +120,32 @@
       inStock: true,
       tags: ["designer", "leather", "handbag"],
       featured: true
+    },
+    {
+      id: 9,
+      name: "Designer",
+      category: "bag",
+      price: 129.99,
+      originalPrice: 179.99,
+      rating: 4.7,
+      reviews: 89,
+      discount: 28,
+      inStock: true,
+      tags: ["designer", "leather", "handbag"],
+      featured: true
+    },
+    {
+      id: 10,
+      name: "Designer kitty",
+      category: "bag",
+      price: 129.99,
+      originalPrice: 179.99,
+      rating: 4.7,
+      reviews: 89,
+      discount: 28,
+      inStock: true,
+      tags: ["designer", "leather", "handbag"],
+      featured: true
     }
   ];
 
