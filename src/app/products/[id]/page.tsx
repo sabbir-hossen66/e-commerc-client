@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { mockProducts } from '@/app/components/data';
+import { useCartStore } from '@/store/cartStore';
 // Adjust path based on your data.ts location
 
 interface Product {
@@ -27,6 +28,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const addToCart=useCartStore((state)=>state.addToCart)
 
   useEffect(() => {
     if (id) {
@@ -40,7 +42,7 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     if (product) {
       console.log(`Added ${quantity} of product ${product.id} to cart`);
-      // Add your cart logic here
+      addToCart(quantity);
     }
   };
 

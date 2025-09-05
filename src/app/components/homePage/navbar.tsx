@@ -1,10 +1,12 @@
 "use client";
+import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
 import { useState } from "react";
 import { ShoppingCart } from "react-feather";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const cartCount=useCartStore((state)=>state.cartCount)
   
   const links = [
     { href: "/", label: "Home" },
@@ -39,9 +41,12 @@ const Navbar = () => {
               aria-label="Shopping Cart"
             >
               <ShoppingCart size={22} />
+              {
+                cartCount > 0 &&(
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
-                5
+                {cartCount}
               </span>
+              )}
             </button>
           </div>
 
@@ -52,9 +57,12 @@ const Navbar = () => {
               aria-label="Shopping Cart"
             >
               <ShoppingCart size={22} />
+              {(
+                cartCount > 0 &&
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
-                2
+                {cartCount}
               </span>
+              )}
             </button> 
             <button
               onClick={() => setIsOpen(!isOpen)}
