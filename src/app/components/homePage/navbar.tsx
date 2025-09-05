@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { ShoppingCart } from "react-feather";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,13 +33,32 @@ const Navbar = () => {
                 {label}
               </Link>
             ))}
+               {/* Shopping Cart for Desktop */}
+            <button
+              className="relative p-2 rounded-full hover:bg-gray-100 transition"
+              aria-label="Shopping Cart"
+            >
+              <ShoppingCart size={22} />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                5
+              </span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
+                <button
+              className="relative p-2 rounded-full hover:bg-gray-100 transition"
+              aria-label="Shopping Cart"
+            >
+              <ShoppingCart size={22} />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                2
+              </span>
+            </button> 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-yellow-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-yellow-600 hover:bg-gray-100 focus:outline-none "
             >
               <span className="sr-only">Open main menu</span>
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
