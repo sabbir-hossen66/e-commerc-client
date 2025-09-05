@@ -4,6 +4,8 @@ import { Separator } from "@/components/ui/separator"
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Clock } from "lucide-react"
 
 export default function Footer() {
+  const d = new Date();
+  const year = d.getFullYear();
   return (
     <footer className="bg-card border-t border-border">
       {/* Newsletter Section */}
@@ -149,7 +151,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-muted-foreground text-sm">© 2024 NijerBazar. All rights reserved.</p>
+          <p className="text-muted-foreground text-sm">© {year} NijerBazar. All rights reserved.</p>
           <div className="flex space-x-6 text-sm">
             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
               Privacy Policy

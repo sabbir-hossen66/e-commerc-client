@@ -205,7 +205,7 @@ const ProductDetail = () => {
                     <div className="flex items-center space-x-4">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="w-12 h-12 rounded-xl border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-yellow-400 transition-all text-xl font-bold"
+                        className="w-12 h-12 rounded-xl border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-yellow-400 transition-all text-xl font-bold cursor-pointer"
                       >
                         -
                       </button>
@@ -214,7 +214,7 @@ const ProductDetail = () => {
                       </span>
                       <button
                         onClick={() => setQuantity(quantity + 1)}
-                        className="w-12 h-12 rounded-xl border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-yellow-400 transition-all text-xl font-bold"
+                        className="w-12 h-12 rounded-xl border-2 border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-yellow-400 transition-all text-xl font-bold cursor-pointer"
                       >
                         +
                       </button>
