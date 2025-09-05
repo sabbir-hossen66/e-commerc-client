@@ -39,13 +39,16 @@ const ProductDetail = () => {
     }
   }, [id]);
 
-  const handleAddToCart = () => {
-    if (product) {
-      console.log(`Added ${quantity} of product ${product.id} to cart`);
-      addToCart(quantity);
-    }
-  };
-
+const handleAddToCart = () => {
+  if (product) {
+    addToCart({
+      id: String(product.id),
+      name: product.name,
+      quantity,
+    });
+    console.log(`Added ${quantity} of product ${product.name} to cart`);
+  }
+};
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">

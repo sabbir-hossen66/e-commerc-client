@@ -6,7 +6,8 @@ import { ShoppingCart } from "react-feather";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const cartCount=useCartStore((state)=>state.cartCount)
+  const items=useCartStore((state)=>state.items);
+  const cartCount=items.reduce((sum,item)=>sum+item.quantity,0)
   
   const links = [
     { href: "/", label: "Home" },
