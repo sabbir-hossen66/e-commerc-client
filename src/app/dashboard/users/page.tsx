@@ -21,7 +21,7 @@ export default function ProductsPage() {
         {/* Main Content with SidePanel */}
         <div className="flex flex-1 gap-4 p-4 pt-0">
           {/* Sub-navigation panel */}
-          <SidePanel title="Settings" menuItems={productMenu} />
+          <SidePanel title="Users" menuItems={productMenu} />
 
           {/* Main content area */}
           <div className="flex-1 rounded-xl bg-muted/50 p-6">

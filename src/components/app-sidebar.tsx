@@ -25,8 +25,13 @@ const items = [
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "/dashboard/calendar",
+    title: "Orders",
+    url: "/dashboard/orders",
+    icon: Calendar,
+  },
+  {
+    title: "UserManagement",
+    url: "/dashboard/users",
     icon: Calendar,
   },
   {
