@@ -10,7 +10,7 @@ export const productMenu = [
     href: "/dashboard/products/add",
   },
   {
-    title: "Categories (Dresses, Tops, Bottoms, Accessories, etc.)",
+    title: "Categories",
     href: "/dashboard/products/categories",
   },
   {
@@ -21,8 +21,48 @@ export const productMenu = [
     title: "Product Reviews",
     href: "/dashboard/products/reviews",
   },
+];
+export const Orders = [
   {
-    title: "Inventory Management",
-    href: "/dashboard/products/inventory",
+    title: "All Orders",
+    href: "/dashboard/orders/all",
+  },
+  {
+    title: "Pending Orders",
+    href: "/dashboard/orders/add",
+  },
+  {
+    title: "Processing",
+    href: "/dashboard/orders/categories",
+  },
+  {
+    title: "Delivered",
+    href: "/dashboard/orders/brands",
+  },
+  {
+    title: "Returns",
+    href: "/dashboard/orders/reviews",
   },
 ];
+
+export const Users=[
+  {
+    title:"Profile",
+    href:"/dashboard/users/profile"
+  },
+  {
+    title: "All Users",
+    href: "/dashboard/users/all",
+  },
+  {
+    title:"Active Users",
+    href:"/dashboard/users/active"
+  }
+]
+
+export const Settings = [
+  {
+    title: "General",
+    href: "/dashboard/settings/general",
+  },
+  ]

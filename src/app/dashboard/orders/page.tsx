@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 
-import { productMenu } from "@/lib/menuData"
+import { Orders } from "@/lib/menuData"
 import SidePanel from "@/components/sidePanel"
 
 export default function ProductsPage() {
@@ -21,7 +21,7 @@ export default function ProductsPage() {
         {/* Main Content with SidePanel */}
         <div className="flex flex-1 gap-4 p-4 pt-0">
           {/* Sub-navigation panel */}
-          <SidePanel title="Orders" menuItems={productMenu} />
+          <SidePanel title="Orders" menuItems={Orders} />
 
           {/* Main content area */}
           <div className="flex-1 rounded-xl bg-muted/50 p-6">
