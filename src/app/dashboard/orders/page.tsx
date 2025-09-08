@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
+import CartPage from "./cart/page"
 
 
 export default function ProductsPage() {
@@ -17,6 +18,7 @@ export default function ProductsPage() {
         </header>
         <main className="flex-1 p-4">
          <h3>hello kire</h3>
+         <CartPage/>
         </main>
       </SidebarInset>
     </SidebarProvider>

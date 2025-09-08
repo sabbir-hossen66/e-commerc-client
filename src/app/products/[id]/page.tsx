@@ -46,7 +46,6 @@ const handleAddToCart = () => {
       name: product.name,
       quantity,
     });
-    console.log(`Added ${quantity} of product ${product.name} to cart`);
   }
 };
   if (loading) {

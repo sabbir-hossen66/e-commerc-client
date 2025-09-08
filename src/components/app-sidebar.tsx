@@ -1,5 +1,5 @@
 "use client"
-import { Calendar, Home, Inbox, Settings } from "lucide-react"
+import { Calendar,User, Inbox, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -15,9 +15,9 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Profile",
     url: "/",
-    icon: Home,
+    icon: User,
   },
   {
     title: "Products",
