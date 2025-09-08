@@ -30,11 +30,6 @@ const items = [
     icon: Calendar,
   },
   {
-    title: "UserManagement",
-    url: "/dashboard/users",
-    icon: Calendar,
-  },
-  {
     title: "Settings",
     url: "/dashboard/settings",
     icon: Settings,
