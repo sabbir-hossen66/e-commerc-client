@@ -17,7 +17,6 @@ export default function ProductsPage() {
           </div>
         </header>
         <main className="flex-1 p-4">
-         <h3>hello kire</h3>
          <CartPage/>
         </main>
       </SidebarInset>
