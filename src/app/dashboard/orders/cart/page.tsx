@@ -1,13 +1,12 @@
-// src/app/dashboard/orders/cart/page.tsx
-
 "use client";
 import { useCartStore } from '@/store/cartStore';
 import { mockProducts } from '@/app/components/data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Trash2, Plus, Minus, ShoppingBag, CreditCard } from 'lucide-react';
 import Link from 'next/link';
 import Swal from "sweetalert2";
 import CheckoutModal from '@/app/components/modal/checkoutModal';
+import Pagination from '@/app/components/pagination';
 
 
 interface CartItem {
@@ -33,13 +32,30 @@ interface Product {
 const CartPage = () => {
   const { items, removeFromCart, updateQuantity, clearCart, getTotalItems } = useCartStore();
   const [showModal, setShowModal] = useState(false);
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Show 5 items per page
+
+  // Calculate pagination
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = items.slice(startIndex, endIndex);
+
+  // Reset to first page when items change significantly
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(1);
+    }
+  }, [items.length, currentPage, totalPages]);
 
   // Get product details from mockProducts
   const getProductDetails = (itemId: string): Product | null => {
     return mockProducts.find((product: Product) => product.id === parseInt(itemId)) || null;
   };
 
-  // Calculate totals
+  // Calculate totals (still use all items, not just current page)
   const calculateSubtotal = () => {
     return items.reduce((total, item) => {
       const product = getProductDetails(item.id);
@@ -74,6 +90,7 @@ const CartPage = () => {
 
   const handleOrderSuccess = () => {
     clearCart();
+    setCurrentPage(1); // Reset pagination after clearing cart
   };
 
   const handleClear = () => {
@@ -88,9 +105,16 @@ const CartPage = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         clearCart();
+        setCurrentPage(1); // Reset pagination after clearing cart
         Swal.fire("Deleted!", "Your cart has been cleared.", "success");
       }
     });
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of cart items for better UX
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (items.length === 0) {
@@ -123,6 +147,11 @@ const CartPage = () => {
               </h1>
               <p className="text-sm sm:text-base text-gray-600 mt-1">
                 {getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'} in your cart
+                {totalPages > 1 && (
+                  <span className="text-gray-500">
+                    {' '} • Showing {startIndex + 1}-{Math.min(endIndex, items.length)} of {items.length}
+                  </span>
+                )}
               </p>
             </div>
             <button
@@ -137,7 +166,7 @@ const CartPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-3 sm:space-y-4">
-            {items.map((item: CartItem) => {
+            {currentItems.map((item: CartItem) => {
               const product = getProductDetails(item.id);
               if (!product) return null;
 
@@ -193,10 +222,10 @@ const CartPage = () => {
                       
                       <div className="text-right">
                         <p className="text-base font-bold text-gray-900">
-                          {(product.price * item.quantity).toFixed(2)}
+                          ${(product.price * item.quantity).toFixed(2)}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {product.price} each
+                          ${product.price} each
                         </p>
                       </div>
                     </div>
@@ -221,11 +250,11 @@ const CartPage = () => {
                       </p>
                       <div className="flex items-center gap-2">
                         <span className="text-base lg:text-lg font-bold text-gray-900">
-                          {product.price}
+                          ${product.price}
                         </span>
                         {product.originalPrice > product.price && (
                           <span className="text-xs lg:text-sm text-gray-500 line-through">
-                            {product.originalPrice}
+                            ${product.originalPrice}
                           </span>
                         )}
                       </div>
@@ -253,7 +282,7 @@ const CartPage = () => {
                     {/* Item Total */}
                     <div className="text-right">
                       <p className="text-base lg:text-lg font-bold text-gray-900">
-                        {(product.price * item.quantity).toFixed(2)}
+                        ${(product.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
 
@@ -269,6 +298,17 @@ const CartPage = () => {
                 </div>
               );
             })}
+
+            {/* Pagination Component */}
+            {totalPages > 1 && (
+              <div className="flex justify-center pt-4">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
           </div>
 
           {/* Order Summary */}
@@ -281,22 +321,22 @@ const CartPage = () => {
               <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                 <div className="flex justify-between text-sm sm:text-base">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-semibold">{subtotal.toFixed(2)}</span>
+                  <span className="font-semibold">${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm sm:text-base">
                   <span className="text-gray-600">Tax (8%)</span>
-                  <span className="font-semibold">{tax.toFixed(2)}</span>
+                  <span className="font-semibold">${tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm sm:text-base">
                   <span className="text-gray-600">Shipping</span>
                   <span className="font-semibold">
-                    {shipping === 0 ? 'FREE' : `${shipping.toFixed(2)}`}
+                    {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="border-t pt-3 sm:pt-4">
                   <div className="flex justify-between text-base sm:text-lg">
                     <span className="font-bold text-gray-800">Total</span>
-                    <span className="font-bold text-gray-900">{total.toFixed(2)}</span>
+                    <span className="font-bold text-gray-900">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -304,7 +344,7 @@ const CartPage = () => {
               {subtotal < 50 && (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
                   <p className="text-xs sm:text-sm text-yellow-800">
-                    💡 Add {(50 - subtotal).toFixed(2)} more for free shipping!
+                    💡 Add ${(50 - subtotal).toFixed(2)} more for free shipping!
                   </p>
                 </div>
               )}
