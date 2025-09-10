@@ -1,6 +1,5 @@
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
-import CartPage from "./orders/cart/page"
 
 export default function Page() {
   return (
